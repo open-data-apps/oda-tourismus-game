@@ -1,0 +1,26 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="512" height="512" role="img" aria-labelledby="title desc">
+  <title id="title">Bilder-Rätsel</title>
+  <desc id="desc">Stilisiertes Bildsymbol mit Sonne und Bergen als Zeichen für ein Foto-Ratespiel</desc>
+  <defs>
+    <linearGradient id="bgGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#7eb8f7" />
+      <stop offset="100%" stop-color="#3d3fa5" />
+    </linearGradient>
+    <filter id="shadow" x="-15%" y="-15%" width="130%" height="135%">
+      <feDropShadow dx="0" dy="8" stdDeviation="12" flood-color="#000000" flood-opacity="0.30" />
+    </filter>
+  </defs>
+
+  <rect width="512" height="512" rx="108" ry="108" fill="url(#bgGrad)" />
+  <ellipse cx="160" cy="140" rx="180" ry="160" fill="#ffffff" fill-opacity="0.10" />
+
+  <g filter="url(#shadow)">
+    <!-- Bilderrahmen -->
+    <rect x="116" y="140" width="280" height="232" rx="30" ry="30"
+          fill="none" stroke="#ffffff" stroke-width="20" />
+    <!-- Sonne -->
+    <circle cx="196" cy="212" r="26" fill="#ffffff" />
+    <!-- Bergkette -->
+    <path d="M150,352 L214,258 L266,320 L312,272 L362,352 Z" fill="#ffffff" />
+  </g>
+</svg>

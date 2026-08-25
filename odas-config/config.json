@@ -1,0 +1,52 @@
+{
+  "apiVersion": "1",
+  "urlODP": "https://open-data-app-store.de",
+  "seitentitel": "Bilder-Rätsel",
+  "titel": "Bilder-Rätsel",
+  "icon": "logo_ondics.png",
+  "kontakt": [
+    "_multiline_",
+    "<p>Sie haben Fragen, Hinweise oder Verbesserungsvorschläge zu dieser App? Wenden Sie sich gern an den Anbieter des Open Data Portals.</p>",
+    "<p>Telefon: <a href='tel:+497****3100'>0711 31009-3100</a><br>E-Mail: <a href='mailto:info@ondics.de'>info@ondics.de</a></p>"
+  ],
+  "beschreibung": [
+    "_multiline_",
+    "<p>Bilder-Rätsel macht offene Tourismusdaten spielerisch erlebbar. Sie sehen das Foto einer Sehenswürdigkeit und entscheiden, um welche es sich handelt – zur Auswahl stehen genau zwei Namen aus dem Datenbestand. Kategorie und Bildnachweis werden eingeblendet, sofern der Datensatz sie enthält.</p>",
+    "<h2>Spielregeln</h2>",
+    "<p>Vier Schwierigkeitsgrade bestimmen den Spielverlauf: „Leicht“ mit drei Leben ohne Zeitlimit, „Mittel“ mit zwei Leben und 20 Sekunden pro Runde sowie „Schwer“ und „Hardcore“ mit je einem Leben und 12 beziehungsweise 7 Sekunden pro Runde. Ein Rundentimer läuft nur in den Zeit-Modi. Das Spiel endet, wenn alle Leben aufgebraucht sind. Für jeden Schwierigkeitsgrad wird die beste erreichte Punktzahl lokal in Ihrem Browser gespeichert.</p>",
+    "<h2>Für wen ist diese App?</h2>",
+    "<p>Die App richtet sich an alle, die eine Region spielerisch entdecken möchten – ob Einheimische, Gäste oder Schulklassen. Es ist kein besonderes Datenwissen nötig: Wer gern rätselt, kann sofort loslegen.</p>",
+    "<h2>Datenquelle</h2>",
+    "<p>Die App arbeitet mit POI-Datensätzen im schema.org/ODTA-Format (Name, Kategorie und Foto je Eintrag). Die Datenquelle wird über die Instanz-Konfiguration festgelegt (<code>apiurl</code>) und standardmäßig über den ODAS-Proxy geladen. Die voreingestellte Portalressource enthält Lizenzangaben je Eintrag und Bild; diese können voneinander abweichen.</p>",
+    "<p>Die konfigurierte Datenquelle:</p>",
+    "<ul>",
+    "<li><strong>Open Data Portal:</strong> <a href='https://opendata.muenchen.de' target='_blank' rel='noopener'>Open Data Portal München</a></li>",
+    "<li><strong>Datensatz:</strong> <a href='https://opendata.muenchen.de/dataset/touristische-points-of-interests-poi-muenchen' target='_blank' rel='noopener'>Touristische Points of Interests (POI) München</a></li>",
+    "<li><strong>Ressource:</strong> <a href='https://opendata.muenchen.de/dataset/5447d89c-256a-4091-92e2-e248e0ed6758/resource/b6b45b42-2e6c-43af-898f-c5cfa1d660b8/download/___' target='_blank' rel='noopener'>Touristische Points of Interests (POI) München (CSV-Download)</a></li>",
+    "</ul>",
+    "<h2>Open Data App Store</h2>",
+    "<p>Diese App ist für den <a href='https://open-data-app-store.de' target='_blank' rel='noopener'>Open Data App Store</a> gemacht und wurde von <a href='https://www.ondics.de/' target='_blank' rel='noopener'>Ondics GmbH</a> entwickelt.</p>"
+  ],
+  "impressum": [
+    "_multiline_",
+    "<h2>Anbieter</h2>",
+    "<p>Ondics GmbH</p>",
+    "<p>Blumenstraße 19<br>70182 Stuttgart</p>",
+    "<p>Website: <a href='https://www.ondics.de/' target='_blank' rel='noopener'>https://www.ondics.de/</a></p>",
+    "<h2>Kontakt</h2>",
+    "<p>Telefon: 0711 31009-3100<br>E-Mail: <a href='mailto:info@ondics.de'>info@ondics.de</a></p>"
+  ],
+  "datenschutz": [
+    "_multiline_",
+    "<p>Bilder-Rätsel verarbeitet die angezeigten offenen Daten ausschließlich im Browser. Es werden keine Cookies gesetzt und keine Nutzungsstatistiken erhoben. Im lokalen Speicher Ihres Browsers (localStorage) werden ausschließlich der persönliche Bestwert je Schwierigkeitsgrad und die gewählte Darstellung (Hell/Dunkel/Auto) abgelegt; diese Daten verlassen Ihr Gerät nicht.</p>",
+    "<p>Alle für die Darstellung benötigten Programmbibliotheken werden mit der App ausgeliefert. Beim Aufruf werden dafür keine externen Server kontaktiert.</p>",
+    "<p>Die angezeigten Daten werden über den ODAS-Proxy geladen. Die Anfrage an die Datenquelle stellt der ODAS-Server; Ihre IP-Adresse wird dorthin nicht übermittelt. Maßgeblich ist der Schalter <code>proxyAktiv</code> der Instanz-Konfiguration: Bei „nein“ lädt der Browser die Quelle direkt; das ist nur sinnvoll, wenn die Quelle CORS-freigebende Antwortheader sendet.</p>",
+    "<h3>Beim Aufruf kontaktierte Drittanbieter</h3><p>Folgende externe Server werden kontaktiert. Dabei werden IP-Adresse und User-Agent der Besucher:innen an diese Anbieter übertragen:</p><ul><li><strong>www.muenchen.travel</strong> — Fotos der Sehenswürdigkeiten (Bilddateien der Datenquelle)</li></ul>"
+  ],
+  "fusszeile": "© 2026 | Daten: Landeshauptstadt München; Lizenz gemäß Eintrag/Bild | Entwicklung: Ondics GmbH | ODAS: Ondics GmbH",
+  "brandingCSS": "",
+  "brandingCSSFile": "../assets/branding.css",
+  "urlDaten": "https://opendata.muenchen.de/dataset/touristische-points-of-interests-poi-muenchen",
+  "apiurl": "https://opendata.muenchen.de/dataset/5447d89c-256a-4091-92e2-e248e0ed6758/resource/b6b45b42-2e6c-43af-898f-c5cfa1d660b8/download/___",
+  "proxyAktiv": "ja"
+}

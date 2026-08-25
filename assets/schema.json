@@ -1,0 +1,88 @@
+{
+  "$schema": "https://frictionlessdata.io/schemas/table-schema.json",
+  "fields": [
+    {
+      "name": "@type",
+      "title": "Typ",
+      "type": "string",
+      "description": "schema.org-Typ des Eintrags (hier durchgehend TouristAttraction)."
+    },
+    {
+      "name": "@id",
+      "title": "ID",
+      "type": "string",
+      "description": "Eindeutiger Identifikator des Points of Interest.",
+      "constraints": {
+        "required": true
+      }
+    },
+    {
+      "name": "name",
+      "title": "Name",
+      "type": "string",
+      "description": "Name der Sehenswürdigkeit. Wird als Antwortoption im Spiel verwendet.",
+      "constraints": {
+        "required": true
+      }
+    },
+    {
+      "name": "description",
+      "title": "Beschreibung",
+      "type": "string",
+      "description": "Beschreibungstext der Sehenswürdigkeit."
+    },
+    {
+      "name": "bayernCloudType",
+      "title": "Kategorie",
+      "type": "string",
+      "description": "Touristische Kategorie aus der BayernCloud (z. B. Natur, Bauwerk & Denkmäler, Sport). Unterkategorien sind mit :: getrennt."
+    },
+    {
+      "name": "url",
+      "title": "Webseite",
+      "type": "string",
+      "format": "uri",
+      "description": "Weiterführende Webseite zur Sehenswürdigkeit."
+    },
+    {
+      "name": "geo-latitude",
+      "title": "Breitengrad",
+      "type": "number",
+      "description": "Geografische Breite (WGS84) des Points of Interest."
+    },
+    {
+      "name": "geo-longitude",
+      "title": "Längengrad",
+      "type": "number",
+      "description": "Geografische Länge (WGS84) des Points of Interest."
+    },
+    {
+      "name": "image-contentUrl",
+      "title": "Bild-URL",
+      "type": "string",
+      "format": "uri",
+      "description": "URL des Fotos der Sehenswürdigkeit. Nur Einträge mit Bild werden im Bild-Duell verwendet."
+    },
+    {
+      "name": "image-license",
+      "title": "Bildlizenz",
+      "type": "string",
+      "description": "Lizenzangabe zum verlinkten Foto (kann von der Datensatzlizenz abweichen)."
+    },
+    {
+      "name": "image-author-givenName",
+      "title": "Bildautor Vorname",
+      "type": "string",
+      "description": "Vorname der Urheberin/des Urhebers des Fotos."
+    },
+    {
+      "name": "image-author-familyName",
+      "title": "Bildautor Nachname",
+      "type": "string",
+      "description": "Nachname der Urheberin/des Urhebers des Fotos."
+    }
+  ],
+  "missingValues": [
+    ""
+  ]
+}

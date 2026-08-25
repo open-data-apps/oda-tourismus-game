@@ -1,0 +1,616 @@
+/*
+ * Bilder-Rätsel – cleanes Schwarz-Weiß-Theme
+ *
+ * Neutrales, modernes Design, das sich an den ODAS-Basis-Look anpasst (auch
+ * ohne branding.css): weiße Karten, dunkle Schrift, dezente graue Linien und
+ * Schatten. Farbe nur dort, wo sie eine Funktion hat (grün = richtig,
+ * rot = falsch). Selektoren, die mit der zur Laufzeit injizierten branding.css
+ * (button/.btn/h1-h6) kollidieren, sind unter #main-content gescoped.
+ */
+
+/* Die Theme-Variablen gehören zum App-Container (.oda-game-host), nicht zum
+ * Dokument: Jede Instanz kann ein eigenes data-oda-theme tragen. */
+.oda-game-host {
+  --oda-surface: #ffffff;
+  --oda-inset: #f4f5f7;
+  --oda-ink: #17181c;
+  --oda-muted: #6b7280;
+  --oda-line: #e5e7eb;
+  --oda-strong: #17181c;
+  --oda-strong-hover: #33363d;
+  --oda-on-strong: #ffffff;
+  --oda-correct-1: #15803d;
+  --oda-correct-2: #16a34a;
+  --oda-wrong-1: #b91c1c;
+  --oda-wrong-2: #dc2626;
+  --oda-radius: 22px;
+  --oda-radius-sm: 14px;
+  --oda-shadow: 0 18px 44px -26px rgba(17, 19, 24, 0.4);
+}
+
+/* ---- Karte (jede Ansicht sitzt auf dieser Karte) ---- */
+.oda-game {
+  max-width: 680px;
+  margin: 0 auto;
+  padding: clamp(20px, 4vw, 34px);
+  background: var(--oda-surface);
+  border: 1px solid var(--oda-line);
+  border-radius: var(--oda-radius);
+  box-shadow: var(--oda-shadow);
+  color: var(--oda-ink);
+  position: relative;
+  overflow: hidden;
+  animation: oda-fade-in 0.35s ease both;
+}
+
+/* Überschriften/Absätze einfärben (schlägt branding.css h1-h6) */
+#main-content .oda-game h1,
+#main-content .oda-game h2,
+#main-content .oda-game h3 {
+  color: var(--oda-ink);
+  margin: 0;
+}
+.oda-game p {
+  color: var(--oda-ink);
+}
+
+/* ---- HUD (Punkte / Zeit / Leben) ---- */
+.oda-hud {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 1rem;
+  padding-bottom: 16px;
+  margin-bottom: 18px;
+  border-bottom: 1px solid var(--oda-line);
+}
+.oda-hud-item {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+}
+.oda-hud-item.oda-hud-right {
+  align-items: flex-end;
+}
+.oda-hud-item.oda-hud-timer {
+  align-items: center;
+}
+.oda-hud-label {
+  font-size: 0.68rem;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--oda-muted);
+}
+.oda-hud-value {
+  font-size: 1.75rem;
+  font-weight: 800;
+  line-height: 1;
+  font-variant-numeric: tabular-nums;
+}
+
+/* ---- Foto-Bühne ---- */
+.oda-stage {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 4 / 3;
+  overflow: hidden;
+  border-radius: var(--oda-radius-sm);
+  background: var(--oda-inset);
+  border: 1px solid var(--oda-line);
+}
+.oda-photo {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  animation: oda-zoom 0.5s ease both;
+}
+.oda-cat-chip {
+  position: absolute;
+  left: 12px;
+  bottom: 12px;
+  padding: 0.32rem 0.72rem;
+  border-radius: 999px;
+  font-size: 0.78rem;
+  font-weight: 600;
+  color: #fff;
+  background: rgba(17, 19, 24, 0.74);
+  backdrop-filter: blur(6px);
+}
+.oda-attribution {
+  margin: 0.4rem 2px 0;
+  font-size: 0.72rem;
+  color: var(--oda-muted);
+  text-align: right;
+}
+
+.oda-question {
+  text-align: center;
+  font-size: 1.15rem;
+  font-weight: 600;
+  margin: 1.1rem 0 0.9rem;
+}
+
+/* ---- Antwort-Duell ---- */
+.oda-answers {
+  display: grid;
+  grid-template-columns: 1fr auto 1fr;
+  align-items: stretch;
+  gap: 0.6rem;
+}
+.oda-or {
+  align-self: center;
+  font-size: 0.72rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  font-weight: 800;
+  color: var(--oda-muted);
+}
+#main-content .oda-answer-btn {
+  position: relative;
+  border: 1px solid var(--oda-line);
+  background: var(--oda-surface);
+  color: var(--oda-ink);
+  padding: 1.05rem 1rem;
+  border-radius: var(--oda-radius-sm);
+  font-size: 1.05rem;
+  font-weight: 700;
+  line-height: 1.25;
+  cursor: pointer;
+  transition: transform 0.12s ease, background 0.15s ease,
+    border-color 0.15s ease, box-shadow 0.15s ease;
+}
+#main-content .oda-answer-btn:hover:not(:disabled) {
+  border-color: var(--oda-ink);
+  transform: translateY(-2px);
+  box-shadow: 0 10px 22px -14px rgba(17, 19, 24, 0.5);
+}
+#main-content .oda-answer-btn:disabled {
+  cursor: default;
+}
+#main-content .oda-answer-btn.is-correct {
+  background: linear-gradient(135deg, var(--oda-correct-1), var(--oda-correct-2));
+  border-color: transparent;
+  color: #fff;
+  animation: oda-pop 0.4s ease;
+}
+#main-content .oda-answer-btn.is-wrong {
+  background: linear-gradient(135deg, var(--oda-wrong-1), var(--oda-wrong-2));
+  border-color: transparent;
+  color: #fff;
+  animation: oda-shake 0.42s ease;
+}
+.oda-key {
+  display: inline-grid;
+  place-items: center;
+  width: 1.35rem;
+  height: 1.35rem;
+  margin-right: 0.5rem;
+  border-radius: 6px;
+  font-size: 0.78rem;
+  font-weight: 700;
+  color: var(--oda-muted);
+  background: var(--oda-inset);
+  border: 1px solid var(--oda-line);
+}
+.oda-answer-btn.is-correct .oda-key,
+.oda-answer-btn.is-wrong .oda-key {
+  color: #fff;
+  background: rgba(255, 255, 255, 0.2);
+  border-color: rgba(255, 255, 255, 0.5);
+}
+
+/* ---- Buttons (Start / Nochmal / Zurück) ---- */
+#main-content .oda-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  background: var(--oda-strong);
+  color: var(--oda-on-strong);
+  border: 1px solid var(--oda-strong);
+  border-radius: 999px;
+  padding: 0.85rem 1.7rem;
+  font-size: 1.02rem;
+  font-weight: 700;
+  cursor: pointer;
+  transition: transform 0.12s ease, background 0.15s ease;
+}
+#main-content .oda-btn:hover {
+  background: var(--oda-strong-hover);
+  transform: translateY(-2px);
+}
+#main-content .oda-btn-ghost {
+  background: transparent;
+  color: var(--oda-ink);
+  border: 1px solid var(--oda-line);
+}
+#main-content .oda-btn-ghost:hover {
+  background: var(--oda-inset);
+  border-color: var(--oda-ink);
+}
+
+/* ---- Startbildschirm ---- */
+.oda-start,
+.oda-gameover {
+  text-align: center;
+  padding: clamp(16px, 4vw, 34px) 6px;
+}
+.oda-eyebrow {
+  text-transform: uppercase;
+  letter-spacing: 0.22em;
+  font-size: 0.74rem;
+  font-weight: 700;
+  color: var(--oda-muted);
+}
+.oda-start-title {
+  font-size: clamp(2.1rem, 6vw, 3rem);
+  font-weight: 800;
+  letter-spacing: -0.02em;
+  margin: 0.35rem 0 0.5rem;
+}
+.oda-lead {
+  color: var(--oda-muted);
+  font-size: 1.02rem;
+  max-width: 46ch;
+  margin: 0 auto 1.4rem;
+}
+
+/* ---- Schwierigkeitsauswahl ---- */
+.oda-difficulties {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 0.7rem;
+  margin-top: 1.6rem;
+  text-align: left;
+}
+@media (max-width: 420px) {
+  .oda-difficulties {
+    grid-template-columns: 1fr;
+  }
+}
+#main-content .oda-diff-card {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+  padding: 1rem 1.1rem;
+  border-radius: var(--oda-radius-sm);
+  border: 1px solid var(--oda-line);
+  background: var(--oda-surface);
+  color: var(--oda-ink);
+  cursor: pointer;
+  transition: transform 0.12s ease, border-color 0.15s ease,
+    box-shadow 0.15s ease;
+}
+#main-content .oda-diff-card:hover {
+  transform: translateY(-3px);
+  border-color: var(--oda-ink);
+  box-shadow: 0 14px 30px -20px rgba(17, 19, 24, 0.55);
+}
+.oda-diff-name {
+  font-size: 1.15rem;
+  font-weight: 800;
+}
+.oda-diff-hint {
+  font-size: 0.82rem;
+  color: var(--oda-muted);
+}
+.oda-diff-best {
+  font-size: 0.78rem;
+  color: var(--oda-muted);
+  margin-top: 0.15rem;
+}
+.oda-diff-best strong {
+  color: var(--oda-ink);
+}
+
+/* ---- Leben (Herzen) ---- */
+.oda-hearts {
+  display: inline-flex;
+  gap: 0.15rem;
+}
+.oda-heart {
+  color: var(--oda-ink);
+  font-size: 1.35rem;
+  line-height: 1;
+}
+.oda-heart.is-lost {
+  color: var(--oda-line);
+}
+
+/* ---- Rundentimer ---- */
+.oda-timer-track {
+  width: 72px;
+  height: 5px;
+  border-radius: 999px;
+  background: var(--oda-line);
+  overflow: hidden;
+  margin-top: 6px;
+}
+.oda-timer-bar {
+  display: block;
+  height: 100%;
+  width: 100%;
+  border-radius: 999px;
+  background: var(--oda-ink);
+  transition: width 1s linear;
+}
+.oda-timer-bar.is-low {
+  background: var(--oda-wrong-2);
+}
+
+/* ---- Spielende ---- */
+.oda-result-title {
+  font-size: clamp(1.7rem, 5vw, 2.2rem);
+  font-weight: 800;
+  margin-bottom: 0.75rem;
+}
+.oda-final-streak {
+  font-size: 3rem;
+  font-weight: 800;
+  line-height: 1;
+  font-variant-numeric: tabular-nums;
+  margin: 0.25rem 0;
+}
+.oda-solution {
+  margin-top: 1rem;
+  color: var(--oda-muted);
+}
+.oda-solution strong {
+  color: var(--oda-ink);
+}
+.oda-actions {
+  display: flex;
+  gap: 0.75rem;
+  justify-content: center;
+  flex-wrap: wrap;
+  margin-top: 1.6rem;
+}
+
+/* ---- Konfetti (nur bei neuem Rekord, dezent in Graustufen) ---- */
+.oda-confetti {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+  pointer-events: none;
+}
+.oda-confetti i {
+  position: absolute;
+  top: -12%;
+  width: 9px;
+  height: 15px;
+  border-radius: 2px;
+  opacity: 0.85;
+  animation: oda-fall linear forwards;
+}
+
+/* ---- Ladezustand / Fehler ---- */
+.oda-loading {
+  text-align: center;
+  padding: clamp(28px, 7vw, 56px) 6px;
+  color: var(--oda-muted);
+}
+.oda-spinner {
+  width: 2.4rem;
+  height: 2.4rem;
+  border-radius: 50%;
+  border: 3px solid var(--oda-line);
+  border-top-color: var(--oda-ink);
+  margin: 0 auto;
+  animation: oda-spin 0.8s linear infinite;
+}
+.oda-error {
+  border: 1px solid rgba(220, 38, 38, 0.4);
+  background: rgba(220, 38, 38, 0.08);
+  border-radius: var(--oda-radius-sm);
+  padding: 1.1rem 1.25rem;
+}
+#main-content .oda-error h2 {
+  color: var(--oda-wrong-2);
+  font-size: 1.1rem;
+  margin-bottom: 0.4rem;
+}
+
+/* ---- Darstellungs-Umschalter (Auto / Hell / Dunkel) ---- */
+.oda-theme {
+  display: inline-flex;
+  gap: 2px;
+  margin-top: 1.5rem;
+  padding: 3px;
+  border-radius: 999px;
+  border: 1px solid var(--oda-line);
+  background: var(--oda-inset);
+}
+#main-content .oda-theme-btn {
+  border: none;
+  background: transparent;
+  color: var(--oda-muted);
+  font-size: 0.82rem;
+  font-weight: 600;
+  padding: 0.35rem 0.9rem;
+  border-radius: 999px;
+  cursor: pointer;
+  transition: background 0.15s ease, color 0.15s ease;
+}
+#main-content .oda-theme-btn:hover {
+  color: var(--oda-ink);
+}
+#main-content .oda-theme-btn.is-active {
+  background: var(--oda-strong);
+  color: var(--oda-on-strong);
+}
+#main-content .oda-theme-btn:focus-visible {
+  outline: 3px solid var(--oda-ink);
+  outline-offset: 2px;
+}
+
+/* ---- Fokus / Bedienung ---- */
+#main-content .oda-answer-btn:focus-visible,
+#main-content .oda-btn:focus-visible,
+#main-content .oda-diff-card:focus-visible {
+  outline: 3px solid var(--oda-ink);
+  outline-offset: 3px;
+}
+
+/* ---- Keyframes ---- */
+@keyframes oda-fade-in {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+@keyframes oda-zoom {
+  from {
+    opacity: 0;
+    transform: scale(1.05);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+@keyframes oda-pop {
+  0% {
+    transform: scale(1);
+  }
+  45% {
+    transform: scale(1.05);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+@keyframes oda-shake {
+  0%,
+  100% {
+    transform: translateX(0);
+  }
+  20% {
+    transform: translateX(-8px);
+  }
+  40% {
+    transform: translateX(7px);
+  }
+  60% {
+    transform: translateX(-5px);
+  }
+  80% {
+    transform: translateX(3px);
+  }
+}
+@keyframes oda-fall {
+  to {
+    transform: translateY(115vh) rotate(540deg);
+    opacity: 0;
+  }
+}
+@keyframes oda-spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+/* ---- Dark Mode ----
+ * Automatisch nach OS-Einstellung, solange keine manuelle Wahl getroffen wurde
+ * (kein data-oda-theme-Attribut am App-Container). Die manuelle Wahl
+ * (Umschalter) setzt data-oda-theme="light" | "dark" am Container und hat
+ * Vorrang – jeweils instanzbezogen.
+ */
+@media (prefers-color-scheme: dark) {
+  .oda-game-host:not([data-oda-theme]) {
+    --oda-surface: #17181c;
+    --oda-inset: #23252b;
+    --oda-ink: #f3f4f6;
+    --oda-muted: #9aa0aa;
+    --oda-line: #34373f;
+    --oda-strong: #f3f4f6;
+    --oda-strong-hover: #d7dade;
+    --oda-on-strong: #17181c;
+    --oda-correct-1: #16a34a;
+    --oda-correct-2: #22c55e;
+    --oda-wrong-1: #dc2626;
+    --oda-wrong-2: #ef4444;
+    --oda-shadow: 0 20px 48px -26px rgba(0, 0, 0, 0.75);
+  }
+}
+.oda-game-host[data-oda-theme="dark"] {
+  --oda-surface: #17181c;
+  --oda-inset: #23252b;
+  --oda-ink: #f3f4f6;
+  --oda-muted: #9aa0aa;
+  --oda-line: #34373f;
+  --oda-strong: #f3f4f6;
+  --oda-strong-hover: #d7dade;
+  --oda-on-strong: #17181c;
+  --oda-correct-1: #16a34a;
+  --oda-correct-2: #22c55e;
+  --oda-wrong-1: #dc2626;
+  --oda-wrong-2: #ef4444;
+  --oda-shadow: 0 20px 48px -26px rgba(0, 0, 0, 0.75);
+}
+
+/* ---- Screen-Reader-only (Fallback, falls Bootstrap nicht geladen ist) ---- */
+.visually-hidden {
+  position: absolute !important;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+/* ---- Teilweise verworfene Datensätze (Startbildschirm) ---- */
+.oda-data-warning {
+  max-width: 46ch;
+  margin: 0.7rem auto 0;
+  padding: 0.6rem 0.9rem;
+  border: 1px solid var(--oda-line);
+  border-radius: var(--oda-radius-sm);
+  background: var(--oda-inset);
+  color: var(--oda-muted);
+  font-size: 0.85rem;
+}
+
+/* ---- Antwortstatus (maschinenlesbar, aria-live) ---- */
+.oda-answer-status {
+  min-height: 1.2em;
+  margin: 0.7rem 2px 0;
+  text-align: center;
+  font-size: 0.92rem;
+  font-weight: 700;
+}
+
+/* ---- Leben: Herzen + Text nebeneinander ---- */
+.oda-lives-value {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.25rem;
+}
+
+/* ---- Leerer Zustand (Quelle ok, keine Datensätze) ---- */
+.oda-empty {
+  padding: 1.1rem 1.25rem;
+  border: 1px solid var(--oda-line);
+  border-radius: var(--oda-radius-sm);
+  background: var(--oda-inset);
+}
+#main-content .oda-empty h2 {
+  color: var(--oda-ink);
+  font-size: 1.1rem;
+  margin-bottom: 0.4rem;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .oda-game,
+  .oda-photo,
+  .oda-answer-btn,
+  .oda-confetti i {
+    animation: none !important;
+  }
+}

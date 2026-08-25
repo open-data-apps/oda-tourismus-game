@@ -1,0 +1,211 @@
+{
+  "app-entwickler-id": "12343",
+  "app-entwickler-name": "ondics-gmbh",
+  "name-in-url": "bilder-raetsel",
+  "name": "Bilder-Rätsel",
+  "version": "1.1.0",
+  "odas-app-icon": "assets/odas-app-icon.svg",
+  "app-icon": "assets/odas-app-icon.svg",
+  "kurzbeschreibung": "Spielerisches Bild-Duell mit touristischen Sehenswürdigkeiten: Foto erkennen und aus zwei Namen den richtigen wählen.",
+  "beschreibung": [
+    "_multiline_",
+    "Bilder-Rätsel macht offene Tourismusdaten zum Spiel: Sie sehen das Foto einer Sehenswürdigkeit und raten, um welche es sich handelt – zur Auswahl stehen genau zwei Namen aus dem Datensatz.",
+    "Vier Schwierigkeitsgrade bestimmen den Spielverlauf: In „Leicht“ haben Sie drei Leben ohne Zeitlimit, in „Mittel“ zwei Leben mit 20 Sekunden pro Runde; „Schwer“ und „Hardcore“ fordern mit einem Leben und 12 beziehungsweise 7 Sekunden pro Runde. Ein Rundentimer läuft nur in den Zeit-Modi. Das Spiel endet, wenn alle Leben aufgebraucht sind – für jeden Schwierigkeitsgrad wird Ihre beste Punktzahl als persönlicher Bestwert gespeichert.",
+    "Die App arbeitet mit POI-Datensätzen im schema.org/ODTA-Standard (Points of Interest mit Name, Kategorie und Foto). Die Datenquelle wird über die Instanz-Konfiguration festgelegt und standardmäßig über den ODAS-Proxy geladen. Die voreingestellte Portalressource enthält Lizenzangaben je Eintrag und Bild; diese können voneinander abweichen.",
+    "So werden aus einem offenen Datensatz spielerische Entdeckungen – für Einheimische ebenso wie für Gäste."
+  ],
+  "tags-funktion": ["Spiel", "Quiz", "Bild-Duell"],
+  "tags-dateityp": ["JSON", "CSV"],
+  "tags-datenart": ["Tourismus", "Sehenswürdigkeiten"],
+  "screenshots": [
+    "assets/Desktop_Screenshot.png",
+    "assets/Mobile_Screenshot.png"
+  ],
+  "daten": {
+    "beschreibung": "POI-Datensatz im schema.org/ODTA-Format (z. B. TouristAttraction) mit Name, Kategorie und Foto-URL je Eintrag, als CSV oder JSON. Die voreingestellte Portalressource enthält Lizenzangaben je Eintrag und Bild; diese können voneinander abweichen.",
+    "schema": "assets/schema.json",
+    "beispiel": "Flaches CSV oder JSON mit einem Feld je Spalte (u. a. @id, name, bayernCloudType, image-contentUrl, image-license, image-author-givenName, image-author-familyName). JSON-Hüllen wie result.records, records, results oder data werden automatisch entpackt.",
+    "beispiel-url": "https://opendata.muenchen.de/dataset/5447d89c-256a-4091-92e2-e248e0ed6758/resource/b6b45b42-2e6c-43af-898f-c5cfa1d660b8/download/___"
+  },
+  "branding-css": "",
+  "api-version": "1",
+  "instanz-config": {
+    "seitentitel": {
+      "label": "Seitentitel",
+      "category": "general",
+      "hilfe": "Der Seitentitel wird im Browser-Tab der App angezeigt.",
+      "default": "Bilder-Rätsel",
+      "format": {
+        "typ": "string",
+        "laenge": 80
+      },
+      "erforderlich": "ja"
+    },
+    "titel": {
+      "label": "Titel",
+      "category": "general",
+      "hilfe": "Der Titel wird in der Kopfzeile der App angezeigt.",
+      "default": "Bilder-Rätsel",
+      "format": {
+        "typ": "string",
+        "laenge": 80
+      },
+      "erforderlich": "ja"
+    },
+    "icon": {
+      "label": "Portal-Logo",
+      "category": "general",
+      "hilfe": "Das Logo wird links oben in der Kopfzeile angezeigt und führt zur Startseite.",
+      "default": "{{{odp.logo}}}",
+      "format": {
+        "typ": "image",
+        "hoehe": 100,
+        "breite": 300
+      },
+      "erforderlich": "ja"
+    },
+    "kontakt": {
+      "label": "Kontakt",
+      "category": "contact-legal",
+      "hilfe": "Der HTML-Inhalt wird im Menüpunkt Kontakt angezeigt.",
+      "default": [
+        "_multiline_",
+        "<p>Sie haben Fragen, Hinweise oder Verbesserungsvorschläge zu dieser App? Wenden Sie sich gern an den Anbieter des Open Data Portals.</p>",
+        "<p>Telefon: <a href='tel:{{odp.anbieter.telcode}}'>{{odp.anbieter.tel}}</a><br>E-Mail: <a href='mailto:{{odp.anbieter.email}}'>{{odp.anbieter.email}}</a></p>"
+      ],
+      "format": {
+        "typ": "markdown"
+      },
+      "erforderlich": "ja"
+    },
+    "beschreibung": {
+      "label": "Beschreibung",
+      "category": "content",
+      "hilfe": "Der HTML-Inhalt wird im Menüpunkt Über diese App angezeigt.",
+      "default": [
+        "_multiline_",
+        "<p>Bilder-Rätsel macht offene Tourismusdaten spielerisch erlebbar. Sie sehen das Foto einer Sehenswürdigkeit und entscheiden, um welche es sich handelt – zur Auswahl stehen genau zwei Namen aus dem Datenbestand. Kategorie und Bildnachweis werden eingeblendet, sofern der Datensatz sie enthält.</p>",
+        "<h2>Spielregeln</h2>",
+        "<p>Vier Schwierigkeitsgrade bestimmen den Spielverlauf: „Leicht“ mit drei Leben ohne Zeitlimit, „Mittel“ mit zwei Leben und 20 Sekunden pro Runde sowie „Schwer“ und „Hardcore“ mit je einem Leben und 12 beziehungsweise 7 Sekunden pro Runde. Ein Rundentimer läuft nur in den Zeit-Modi. Das Spiel endet, wenn alle Leben aufgebraucht sind. Für jeden Schwierigkeitsgrad wird die beste erreichte Punktzahl lokal in Ihrem Browser gespeichert.</p>",
+        "<h2>Für wen ist diese App?</h2>",
+        "<p>Die App richtet sich an alle, die eine Region spielerisch entdecken möchten – ob Einheimische, Gäste oder Schulklassen. Es ist kein besonderes Datenwissen nötig: Wer gern rätselt, kann sofort loslegen.</p>",
+        "<h2>Datenquelle</h2>",
+        "<p>Die App arbeitet mit POI-Datensätzen im schema.org/ODTA-Format (Name, Kategorie und Foto je Eintrag). Die Datenquelle wird über die Instanz-Konfiguration festgelegt (<code>apiurl</code>) und standardmäßig über den ODAS-Proxy geladen. Die voreingestellte Portalressource enthält Lizenzangaben je Eintrag und Bild; diese können voneinander abweichen.</p>",
+        "<p>Die konfigurierte Datenquelle:</p>",
+        "<ul>",
+        "<li><strong>Open Data Portal:</strong> <a href='https://opendata.muenchen.de' target='_blank' rel='noopener'>Open Data Portal München</a></li>",
+        "<li><strong>Datensatz:</strong> <a href='https://opendata.muenchen.de/dataset/touristische-points-of-interests-poi-muenchen' target='_blank' rel='noopener'>Touristische Points of Interests (POI) München</a></li>",
+        "<li><strong>Ressource:</strong> <a href='https://opendata.muenchen.de/dataset/5447d89c-256a-4091-92e2-e248e0ed6758/resource/b6b45b42-2e6c-43af-898f-c5cfa1d660b8/download/___' target='_blank' rel='noopener'>Touristische Points of Interests (POI) München (CSV-Download)</a></li>",
+        "</ul>",
+        "<h2>Open Data App Store</h2>",
+        "<p>Diese App ist für den <a href='{{odas.betreiber.url}}' target='_blank' rel='noopener'>{{odas.betreiber.name}}</a> gemacht und wurde von <a href='{{app.developer.url}}' target='_blank' rel='noopener'>{{app.developer.name}}</a> entwickelt.</p>"
+      ],
+      "format": {
+        "typ": "markdown"
+      },
+      "erforderlich": "ja"
+    },
+    "impressum": {
+      "label": "Impressum",
+      "category": "contact-legal",
+      "hilfe": "Der HTML-Inhalt wird im Menüpunkt Impressum angezeigt.",
+      "default": [
+        "_multiline_",
+        "<h2>Anbieter</h2>",
+        "<p>{{{odp.anbieter.orgName}}}<br>{{{odp.anbieter.orgUnit}}}</p>",
+        "<p>{{odp.anbieter.strasse}}<br>{{odp.anbieter.plzort}}</p>",
+        "<p>Website: <a href='{{odp.anbieter.url-extern}}' target='_blank' rel='noopener'>{{odp.anbieter.url-extern}}</a></p>",
+        "<h2>Ansprechperson</h2>",
+        "<p>{{odp.anbieter.kontakt-bezeichnung}}<br>{{odp.anbieter.name}}</p>",
+        "<h2>Kontakt</h2>",
+        "<p>Telefon: {{odp.anbieter.tel}}<br>E-Mail: <a href='mailto:{{odp.anbieter.email}}'>{{odp.anbieter.email}}</a></p>"
+      ],
+      "format": {
+        "typ": "markdown"
+      },
+      "erforderlich": "ja"
+    },
+    "datenschutz": {
+      "label": "Datenschutz",
+      "category": "contact-legal",
+      "hilfe": "Der HTML-Inhalt wird im Menüpunkt Datenschutz angezeigt.",
+      "default": [
+        "_multiline_",
+        "<p>Bilder-Rätsel verarbeitet die angezeigten offenen Daten ausschließlich im Browser. Es werden keine Cookies gesetzt und keine Nutzungsstatistiken erhoben. Im lokalen Speicher Ihres Browsers (localStorage) werden ausschließlich der persönliche Bestwert je Schwierigkeitsgrad und die gewählte Darstellung (Hell/Dunkel/Auto) abgelegt; diese Daten verlassen Ihr Gerät nicht.</p>",
+        "<p>Alle für die Darstellung benötigten Programmbibliotheken werden mit der App ausgeliefert. Beim Aufruf werden dafür keine externen Server kontaktiert.</p>",
+        "<p>Die angezeigten Daten werden über den ODAS-Proxy geladen. Die Anfrage an die Datenquelle stellt der ODAS-Server; Ihre IP-Adresse wird dorthin nicht übermittelt. Maßgeblich ist der Schalter <code>proxyAktiv</code> der Instanz-Konfiguration: Bei „nein“ lädt der Browser die Quelle direkt; das ist nur sinnvoll, wenn die Quelle CORS-freigebende Antwortheader sendet.</p>",
+        "<h3>Beim Aufruf kontaktierte Drittanbieter</h3><p>Folgende externe Server werden kontaktiert. Dabei werden IP-Adresse und User-Agent der Besucher:innen an diese Anbieter übertragen:</p><ul><li><strong>www.muenchen.travel</strong> — Fotos der Sehenswürdigkeiten (Bilddateien der Datenquelle)</li></ul>"
+      ],
+      "format": {
+        "typ": "markdown"
+      },
+      "erforderlich": "ja"
+    },
+    "fusszeile": {
+      "label": "Fußzeile",
+      "category": "contact-legal",
+      "hilfe": "Der HTML-Inhalt wird am unteren Rand der App angezeigt.",
+      "default": "© {{jahr}} | Daten: Landeshauptstadt München; Lizenz gemäß Eintrag/Bild | Entwicklung: {{app.developer.name}} | ODAS: {{odas.betreiber.name}}",
+      "format": {
+        "typ": "string",
+        "laenge": 255
+      },
+      "erforderlich": "ja"
+    },
+    "brandingCSS": {
+      "label": "Zusätzliches Branding-CSS",
+      "category": "advanced",
+      "hilfe": "Optionaler CSS-Code für die konkrete App-Instanz.",
+      "default": "",
+      "format": {
+        "typ": "string",
+        "laenge": 10000
+      },
+      "erforderlich": "nein"
+    },
+    "brandingCSSFile": {
+      "label": "Branding-CSS-Datei",
+      "category": "advanced",
+      "hilfe": "Optionale URL zu einer zusätzlichen CSS-Datei für die konkrete App-Instanz.",
+      "default": "",
+      "format": {
+        "typ": "url",
+        "laenge": 500
+      },
+      "erforderlich": "nein"
+    },
+    "urlDaten": {
+      "label": "URL zum Datensatz",
+      "category": "datasource",
+      "hilfe": "Optional: Katalog- oder Metadatenseite des verwendeten Datensatzes im Open Data Portal (für die Datenquellen-Angabe).",
+      "default": "https://opendata.muenchen.de/dataset/touristische-points-of-interests-poi-muenchen",
+      "format": {
+        "typ": "url",
+        "laenge": 500
+      },
+      "erforderlich": "nein"
+    },
+    "apiurl": {
+      "label": "URL zur Datenressource",
+      "category": "datasource",
+      "hilfe": "JSON- oder CSV-Endpunkt eines POI-Datensatzes im schema.org/ODTA-Format. Der Abruf erfolgt standardmäßig über den ODAS-Proxy (proxyAktiv = ja), weil der Portal-Download keine CORS-Header sendet.",
+      "default": "https://opendata.muenchen.de/dataset/5447d89c-256a-4091-92e2-e248e0ed6758/resource/b6b45b42-2e6c-43af-898f-c5cfa1d660b8/download/___",
+      "format": {
+        "typ": "url",
+        "laenge": 500
+      },
+      "erforderlich": "ja"
+    },
+    "proxyAktiv": {
+      "label": "ODAS-Proxy aktivieren",
+      "category": "datasource",
+      "hilfe": "Mit 'ja' werden Datenabrufe der konfigurierten apiurl über den ODAS-Proxy gesendet. Der voreingestellte Portal-Download sendet keine CORS-Header, daher ist 'ja' Standard. Bei 'nein' lädt der Browser die Quelle direkt; das setzt CORS-freigebende Antwortheader voraus.",
+      "default": "ja",
+      "format": {
+        "typ": "dropdown",
+        "optionen": ["nein", "ja"]
+      },
+      "erforderlich": "ja"
+    }
+  }
+}
