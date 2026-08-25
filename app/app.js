@@ -14,15 +14,15 @@
  * wählt zwischen zwei Namen ("Ist das X oder Y?").
  *
  * Datenquelle:
- *   - Die App lädt ausschließlich die verpflichtend konfigurierte HTTP(S)-`apiurl`
- *     eines Open-Data-Portals – direkt oder über den ODAS-Proxy, gesteuert durch
- *     `proxyAktiv`. Es gibt keinen eingebetteten Datenbestand und keinen Fallback;
- *     eine leere, ungelöste oder ungültige `apiurl` ist ein sichtbarer
- *     Konfigurationsfehler und löst keinen Fetch aus.
+ *   - Die App lädt ausschließlich die verpflichtend konfigurierte HTTP(S)-Ressource
+ *     aus `apiurls` (Name "pois") eines Open-Data-Portals – direkt oder über den
+ *     ODAS-Proxy, gesteuert durch `proxyAktiv`. Es gibt keinen eingebetteten
+ *     Datenbestand und keinen Fallback; eine leere, ungelöste oder ungültige URL
+ *     ist ein sichtbarer Konfigurationsfehler und löst keinen Fetch aus.
  *
  * ConfigData (Beispiel):
  *     {
- *         "apiurl": "<HTTP(S)-URL der Portalressource>",
+ *         "apiurls": [{ "name": "pois", "url": "<HTTP(S)-URL der Portalressource>" }],
  *         "proxyAktiv": "ja"
  *     }
  *
@@ -175,7 +175,7 @@ function createRuntime(container, configdata) {
       state.screen = "config-error";
       container.innerHTML = renderConfigError();
       console.error(
-        `[Bilder-Rätsel] Keine gültige Datenquelle konfiguriert (${state.source.reason}); apiurl = ${JSON.stringify(state.config.apiurl || "")}`,
+        `[Bilder-Rätsel] Keine gültige Datenquelle konfiguriert (${state.source.reason}); apiurls.pois = ${JSON.stringify(getOdasApiUrl(state.config, "pois"))}`,
       );
       return;
     }
@@ -536,8 +536,9 @@ function createRuntime(container, configdata) {
       parts.push(`Foto: ${escapeHtml(poi.author)}`);
     }
     if (poi.licenseUrl) {
+      const licenseHref = safeHttpUrl(poi.licenseUrl);
       parts.push(
-        `<a href="${escapeHtml(poi.licenseUrl)}" target="_blank" rel="noopener">${escapeHtml(poi.license || "Bildlizenz")}</a>`,
+        `<a href="${escapeHtml(licenseHref)}" target="_blank" rel="noopener">${escapeHtml(poi.license || "Bildlizenz")}</a>`,
       );
     } else if (poi.license) {
       parts.push(escapeHtml(poi.license));
@@ -765,9 +766,17 @@ function createRuntime(container, configdata) {
  * Quellmodus: ausschließlich die verpflichtend konfigurierte Portal-URL
  * ----------------------------------------------------------------------- */
 
+// Löst die benannte Datenressource aus configdata.apiurls auf (v2-Vertrag:
+// "Eine Quelle = eine vollständige URL"). Das frühere skalare apiurl wird nicht gelesen.
+function getOdasApiUrl(configdata, name) {
+  const liste = Array.isArray(configdata && configdata.apiurls) ? configdata.apiurls : [];
+  const eintrag = liste.find((e) => e && e.name === name) || {};
+  return String(eintrag.url || "").trim();
+}
+
 // Liefert { kind: "remote", url, proxyEnabled } oder { kind: "config-error", reason }.
 function resolveSource(configdata) {
-  const raw = String((configdata && configdata.apiurl) || "").trim();
+  const raw = getOdasApiUrl(configdata, "pois");
   if (!raw) {
     return { kind: "config-error", reason: "empty" };
   }
@@ -1141,16 +1150,8 @@ function formatCategory(value) {
  * ----------------------------------------------------------------------- */
 
 function safeHttpUrl(value) {
-  if (typeof value !== "string" || !value.trim()) {
-    return "";
-  }
-  let url;
-  try {
-    url = new URL(value.trim());
-  } catch (_error) {
-    return "";
-  }
-  return url.protocol === "http:" || url.protocol === "https:" ? url.href : "";
+  const s = String(value || "").trim();
+  return /^https?:\/\//i.test(s) ? s : "";
 }
 
 /* --------------------------------------------------------------------------
@@ -1161,6 +1162,10 @@ function isOdasProxyEnabled(configdata = {}) {
   return String(configdata.proxyAktiv || "").trim().toLowerCase() === "ja";
 }
 
+// Hinweis: seit der Proxy-Origin-Pruefung (ODAS-Plattform 2026-08-24) bekommt
+// /odp-data die volle Ziel-URL statt nur Pfad+Query (siehe getOdasProxyEndpoint).
+// extractPathFromUrl() bleibt als oeffentlicher Helfer erhalten, wird intern
+// aber nicht mehr aufgerufen.
 function extractPathFromUrl(url) {
   try {
     const parsedUrl = new URL(url);
@@ -1191,9 +1196,7 @@ function getOdasAppBasePath(pathname) {
 
 function getOdasProxyEndpoint(targetUrl, pathname) {
   const appPath = getOdasAppBasePath(pathname);
-  return `${appPath}/odp-data?path=${encodeURIComponent(
-    extractPathFromUrl(targetUrl),
-  )}`;
+  return `${appPath}/odp-data?path=${encodeURIComponent(targetUrl)}`;
 }
 
 async function fetchViaOdasProxy(targetUrl) {

@@ -1,5 +1,16 @@
 # Changelog
 
+## 1.2.0 - 2026-08-25
+
+- **CHG:** App-Paket auf Format v2 gehoben (`app-version`, `app-package-version: "2"`); Legacy-Felder `app-entwickler-id/-name` und `branding-css` entfernt.
+- **CHG:** Skalares `apiurl` durch das Array-Feld `apiurls` (Eintrag „pois") ersetzt; der Quellen-Lesepfad in `app/app.js` nutzt jetzt `getOdasApiUrl()`.
+- **CHG:** Beschreibung/Datenschutz von HTML auf echtes Markdown umgestellt; Datensatz-/Ressourcen-Links nutzen die Shortcodes `{{{appinstanz.urlDaten}}}` und `{{{appinstanz.apiurls.1}}}`.
+- **CHG:** Kategorien auf das deutsche Vokabular umgestellt (general→allgemein usw.).
+- **FIX:** Tote Anbieter-Shortcodes ersetzt (`{{odp.anbieter.url-extern}}` → `{{odp.anbieter.url}}`, `tel:{{odp.anbieter.telcode}}` → `tel:`).
+- **CHG:** Proxy-Aufruf sendet die vollständige Ziel-URL statt nur Pfad+Query, damit die Origin-Allowlist-Prüfung der ODAS-Plattform greift.
+- **FIX:** Datenschutztext neutralisiert: das IP-Versprechen galt nur bei aktivem Proxy; beide Modi werden jetzt korrekt beschrieben.
+
+
 ## 1.1.0 - 2026-08-13
 
 - ENH: Betrieb nur noch über die konfigurierte Open-Data-Portal-Quelle: `apiurl` ist Pflichtfeld und mit der Ressourcen-URL des Datensatzes „Touristische Points of Interests (POI) München“ vorbelegt; der mitgelieferte Demo-Datensatz entfällt als Laufzeitfeature

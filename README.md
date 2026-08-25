@@ -7,7 +7,7 @@ touristischen Sehenswürdigkeit und wählen aus zwei Namen den richtigen aus
 beste Punktzahl wird je Schwierigkeitsgrad als persönlicher Bestwert gespeichert.
 
 Die App arbeitet mit POI-Datensätzen im **schema.org/ODTA-Standard**. Die
-Datenquelle wird über die Instanz-Konfiguration festgelegt (`apiurl` ist
+Datenquelle wird über die Instanz-Konfiguration festgelegt (`apiurls` mit dem Eintrag "pois" ist
 Pflichtfeld) und standardmäßig über den ODAS-Proxy geladen. Die App enthält
 **keine Demo- oder Beispieldaten**.
 
@@ -39,10 +39,10 @@ nötig: Wer gern rätselt, kann sofort loslegen.
 
 Die App verarbeitet POI-Datensätze im **schema.org/ODTA-Format** (Points of Interest mit
 Name, Kategorie und Foto je Eintrag). Sie enthält **keine Demo- oder Snapshot-Daten** und
-ist ohne konfigurierte Datenquelle nicht spielbar; `apiurl` ist ein Pflichtfeld.
+ist ohne konfigurierte Datenquelle nicht spielbar; der `apiurls`-Eintrag "pois" ist ein Pflichtfeld.
 
 Die voreingestellte Quelle ist identisch in `app-package.json`
-(`instanz-config.apiurl.default`) und `odas-config/config.json` hinterlegt:
+(`instanz-config.apiurls.urls[0].default`) und `odas-config/config.json` hinterlegt:
 
 - **Ressource (CSV):** <https://opendata.muenchen.de/dataset/5447d89c-256a-4091-92e2-e248e0ed6758/resource/b6b45b42-2e6c-43af-898f-c5cfa1d660b8/download/___>
 - **Datensatz:** <https://opendata.muenchen.de/dataset/touristische-points-of-interests-poi-muenchen>
@@ -59,7 +59,7 @@ CC BY 4.0 gekennzeichnet. Maßgeblich sind jeweils die aktuellen Angaben der Por
   app-lokalen `odp-data`-Endpunkt (POST, URL-kodierter `path`-Parameter); die Anfrage an
   die Datenquelle stellt der ODAS-Server. Echte Proxy-Antworten sind nur in der
   ODAS-Live-Umgebung prüfbar.
-- **Direktmodus:** `proxyAktiv: "nein"` – der Browser lädt `apiurl` direkt. Das setzt
+- **Direktmodus:** `proxyAktiv: "nein"` – der Browser lädt die Quelle direkt. Das setzt
   CORS-freigebende Antwortheader der Quelle voraus; der voreingestellte Portal-Download
   sendet keine CORS-Header und funktioniert daher im Direktmodus nicht.
 - **Live Server / Standalone:** Weder Live Server noch der Standalone-Container stellen
@@ -102,7 +102,7 @@ Portal-Ressource enthält in allen 175 Einträgen einen `@id`-Wert.
 
 | Parameter | Zweck | Pflicht |
 | --- | --- | --- |
-| `apiurl` | JSON-/CSV-Endpunkt eines POI-Datensatzes im schema.org/ODTA-Format | ja |
+| `apiurls` (Eintrag "pois") | Vollständige JSON-/CSV-URL eines POI-Datensatzes im schema.org/ODTA-Format | ja |
 | `proxyAktiv` | `ja` (Standard) für Abruf über den ODAS-Proxy, `nein` für Direktabruf (nur mit CORS) | ja |
 | `urlDaten` | Katalogseite des Datensatzes (für die Datenquellen-Angabe) | nein |
 | `titel` | sichtbarer Titel in der Kopfzeile | ja |
