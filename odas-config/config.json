@@ -19,7 +19,7 @@
     "<h2>Datenquelle</h2>",
     "<p>- **Open Data Portal:** {{odp.name}}</p>",
     "<p>- **Datensatz:** <a href='https://opendata.muenchen.de/dataset/touristische-points-of-interests-poi-muenchen' target='_blank' rel='noopener'>Touristische Points of Interests (POI) München</a></p>",
-    "<p>- **Ressource:** <a href='https://opendata.muenchen.de/dataset/5447d89c-256a-4091-92e2-e248e0ed6758/resource/b6b45b42-2e6c-43af-898f-c5cfa1d660b8/download/___' target='_blank' rel='noopener'>Konfigurierte POI-Ressource</a></p>",
+    "<p>- **Ressource:** <a href='https://opendata.muenchen.de/dataset/5447d89c-256a-4091-92e2-e248e0ed6758/resource/b6b45b42-2e6c-43af-898f-c5cfa1d660b8/download/pois-muenchen.csv' target='_blank' rel='noopener'>Konfigurierte POI-Ressource</a></p>",
     "<h2>Open Data App Store</h2>",
     "<p>Diese App ist für den <a href='{{odas.betreiber.url}}' target='_blank' rel='noopener'>{{odas.betreiber.name}}</a> gemacht und wurde von <a href='{{app.developer.url}}' target='_blank' rel='noopener'>{{app.developer.name}}</a> entwickelt.</p>"
   ],
@@ -48,7 +48,7 @@
     {
       "name": "pois",
       "label": "URL zur Datenressource",
-      "url": "https://opendata.muenchen.de/dataset/5447d89c-256a-4091-92e2-e248e0ed6758/resource/b6b45b42-2e6c-43af-898f-c5cfa1d660b8/download/___"
+      "url": "https://opendata.muenchen.de/dataset/5447d89c-256a-4091-92e2-e248e0ed6758/resource/b6b45b42-2e6c-43af-898f-c5cfa1d660b8/download/pois-muenchen.csv"
     }
   ]
 }

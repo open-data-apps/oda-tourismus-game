@@ -1,7 +1,9 @@
 {
+  "app-entwickler-id": "12343",
+  "app-entwickler-name": "ondics-gmbh",
   "name": "Bilder-Rätsel",
   "name-in-url": "bilder-raetsel",
-  "app-version": "1.2.0",
+  "app-version": "1.2.1",
   "app-package-version": "2",
   "kurzbeschreibung": "Spielerisches Bild-Duell mit touristischen Sehenswürdigkeiten: Foto erkennen und aus zwei Namen den richtigen wählen.",
   "beschreibung": [
@@ -51,7 +53,7 @@
     "beschreibung": "POI-Datensatz im schema.org/ODTA-Format (z. B. TouristAttraction) mit Name, Kategorie und Foto-URL je Eintrag, als CSV oder JSON. Die voreingestellte Portalressource enthält Lizenzangaben je Eintrag und Bild; diese können voneinander abweichen.",
     "schema": "assets/schema.json",
     "beispiel": "Flaches CSV oder JSON mit einem Feld je Spalte (u. a. @id, name, bayernCloudType, image-contentUrl, image-license, image-author-givenName, image-author-familyName). JSON-Hüllen wie result.records, records, results oder data werden automatisch entpackt.",
-    "beispiel-url": "https://opendata.muenchen.de/dataset/5447d89c-256a-4091-92e2-e248e0ed6758/resource/b6b45b42-2e6c-43af-898f-c5cfa1d660b8/download/___"
+    "beispiel-url": "https://opendata.muenchen.de/dataset/5447d89c-256a-4091-92e2-e248e0ed6758/resource/b6b45b42-2e6c-43af-898f-c5cfa1d660b8/download/pois-muenchen.csv"
   },
   "odas-app-icon": "assets/odas-app-icon.svg",
   "app-icon": "assets/odas-app-icon.svg",
@@ -233,8 +235,8 @@
         {
           "name": "pois",
           "label": "URL zur Datenressource",
-          "default": "https://opendata.muenchen.de/dataset/5447d89c-256a-4091-92e2-e248e0ed6758/resource/b6b45b42-2e6c-43af-898f-c5cfa1d660b8/download/___",
-          "beispiel": "",
+          "default": "https://opendata.muenchen.de/dataset/5447d89c-256a-4091-92e2-e248e0ed6758/resource/b6b45b42-2e6c-43af-898f-c5cfa1d660b8/download/pois-muenchen.csv",
+          "beispiel": "https://opendata.muenchen.de/dataset/5447d89c-256a-4091-92e2-e248e0ed6758/resource/b6b45b42-2e6c-43af-898f-c5cfa1d660b8/download/pois-muenchen.csv",
           "erforderlich": "ja"
         }
       ]

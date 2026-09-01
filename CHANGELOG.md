@@ -1,5 +1,10 @@
 # Changelog
 
+## 1.2.1 - 2026-09-01
+
+- **FIX:** Upload-Blocker behoben – `app-entwickler-id`/`app-entwickler-name` wieder ergänzt (Store verlangt Pflichtfeld auch bei `app-package-version: "2"`; Entfernung in 1.2.0 war voreilig) und `daten.beispiel-url`/`apiurls` von `___`-Placeholder auf echte Download-URL `…/download/pois-muenchen.csv` korrigiert.
+- **FIX:** `.gitignore` um `*.zip` ergänzt (Template-Parität, bereits in 1.1.0 behauptet aber fehlend).
+
 ## 1.2.0 - 2026-08-25
 
 - **CHG:** App-Paket auf Format v2 gehoben (`app-version`, `app-package-version: "2"`); Legacy-Felder `app-entwickler-id/-name` und `branding-css` entfernt.
