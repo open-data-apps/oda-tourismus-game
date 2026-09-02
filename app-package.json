@@ -214,7 +214,7 @@
     "urlDaten": {
       "label": "URL zum Datensatz",
       "category": "datenherkunft",
-      "hilfe": "Optional: Katalog- oder Metadatenseite des verwendeten Datensatzes im Open Data Portal (für die Datenquellen-Angabe).",
+      "hilfe": "Link zur Beschreibungsseite des Datensatzes im Open-Data-Portal (…/dataset/… oder Portal-Start) – nicht der API-Endpunkt. Wird in der App unter „Über diese App → Datenquelle“ verlinkt.",
       "default": "https://opendata.muenchen.de/dataset/touristische-points-of-interests-poi-muenchen",
       "format": {
         "typ": "url",
@@ -225,7 +225,7 @@
     "apiurls": {
       "label": "URLs zu Datenressourcen",
       "category": "datenherkunft",
-      "hilfe": "JSON- oder CSV-Endpunkt eines POI-Datensatzes im schema.org/ODTA-Format. Der Abruf erfolgt standardmäßig über den ODAS-Proxy (proxyAktiv = ja), weil der Portal-Download keine CORS-Header sendet.",
+      "hilfe": "Diese App benötigt einen „Datei-Download“ (direkter Link auf eine Datei im Portal, z. B. CSV/JSON – hier POIs München). Öffnen Sie die Datei und kopieren Sie den „Download“-Link. Kein Link mit „resource_id“ (keine Tabellen-API). Beispiel: https://opendata.muenchen.de/dataset/5447d89c-256a-4091-92e2-e248e0ed6758/resource/b6b45b42-2e6c-43af-898f-c5cfa1d660b8/download/pois-muenchen.csv. Diese App funktioniert nur mit diesem Typ.",
       "typ": "array",
       "format": {
         "typ": "url",
@@ -234,7 +234,7 @@
       "urls": [
         {
           "name": "pois",
-          "label": "URL zur Datenressource",
+          "label": "Datei-Download – POIs München (CSV/JSON)",
           "default": "https://opendata.muenchen.de/dataset/5447d89c-256a-4091-92e2-e248e0ed6758/resource/b6b45b42-2e6c-43af-898f-c5cfa1d660b8/download/pois-muenchen.csv",
           "beispiel": "https://opendata.muenchen.de/dataset/5447d89c-256a-4091-92e2-e248e0ed6758/resource/b6b45b42-2e6c-43af-898f-c5cfa1d660b8/download/pois-muenchen.csv",
           "erforderlich": "ja"
@@ -244,7 +244,7 @@
     "proxyAktiv": {
       "label": "ODAS-Proxy aktivieren",
       "category": "datenherkunft",
-      "hilfe": "Mit ja werden Datenabrufe über den ODAS-Proxy gesendet. Möglich, wenn die Quelle-Origin in den konfigurierten apiurls steht. Der voreingestellte München-Download sendet keine CORS-Header, daher ist hier ja der funktionsfähige Standard. Der Proxy selbst ist nur im ODAS-Live-System verfügbar; Entwicklung und Standalone verwenden nein.",
+      "hilfe": "Mit ja läuft der Datenabruf über den ODAS-Proxy /odp-data (nur im ODAS-Live-System, nur freigegebene Quellen – Origin-Allowlist). Mit nein direkt im Browser (braucht CORS der Quelle). Lokal immer nein testen. Diese Quelle (opendata.muenchen.de) sendet keinen CORS-Header – im Live-System ja empfohlen.",
       "default": "ja",
       "format": {
         "typ": "dropdown",
