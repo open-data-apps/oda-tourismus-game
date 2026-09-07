@@ -1,5 +1,8 @@
 # Changelog
 
+## 1.2.2 - 2026-09-07
+- **CHORE:** Frictionless-Prüfung: Schema, `daten`-Block und Slot bereits konform (Header-Match verifiziert) — keine inhaltliche Änderung.
+
 ## 1.2.1 - 2026-09-01
 
 - **FIX:** Upload-Blocker behoben – `app-entwickler-id`/`app-entwickler-name` wieder ergänzt (Store verlangt Pflichtfeld auch bei `app-package-version: "2"`; Entfernung in 1.2.0 war voreilig) und `daten.beispiel-url`/`apiurls` von `___`-Placeholder auf echte Download-URL `…/download/pois-muenchen.csv` korrigiert.
