@@ -180,6 +180,19 @@ function createRuntime(container, configdata) {
       return;
     }
 
+    // Variante A (F-92): Typprüfung vor dem ersten Fetch.
+    const tgTypWarn = validateUrlTypErwartung(state.source.url, "ckan-dl");
+    if (tgTypWarn) {
+      state.screen = "config-error";
+      renderOdasFehler(container, new Error(tgTypWarn), {
+        url: state.source.url,
+        label: "POI-Ressource",
+        typLabel: "Datei-Download",
+        erwarteterTyp: "ckan-dl",
+      });
+      return;
+    }
+
     try {
       const text = await fetchOdasResource(state.source.url, state.config);
       if (state.disposed) {
