@@ -1,7 +1,9 @@
 # Changelog
 
-## 1.2.3 - 2026-09-08
+## 1.2.4 - 2026-09-08
 - **FIX:** Variante-A-Verdrahtung (F-92): Typprüfung (ckan-dl) vor dem ersten Fetch; Typ-Verstoß über `renderOdasFehler`. Bestehende Spiel-spezifische Fehler-/Leerzustände bleiben unverändert (1.2.3 -> 1.2.4).
+
+## 1.2.3 - 2026-09-08
 - **FIX:** README-Prüfblock: toten Befehl `node tools/test_app_logic.mjs` entfernt (Datei existiert nicht, Doku-Check-Klasse TESTBEFEHL).
 
 ## 1.2.2 - 2026-09-07
