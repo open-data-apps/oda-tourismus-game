@@ -153,7 +153,6 @@ Datenabruf ist eine CORS-freigebende Quelle oder der ODAS-Live-Betrieb nötig.
 ```bash
 node --check app/app.js
 node --check app/app-base.js
-node tools/test_app_logic.mjs
 python3 -m json.tool app-package.json >/dev/null
 python3 -m json.tool odas-config/config.json >/dev/null
 python3 -m json.tool assets/schema.json >/dev/null

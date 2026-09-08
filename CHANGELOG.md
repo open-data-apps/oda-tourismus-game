@@ -1,5 +1,8 @@
 # Changelog
 
+## 1.2.3 - 2026-09-08
+- **FIX:** README-Prüfblock: toten Befehl `node tools/test_app_logic.mjs` entfernt (Datei existiert nicht, Doku-Check-Klasse TESTBEFEHL).
+
 ## 1.2.2 - 2026-09-07
 - **CHORE:** Frictionless-Prüfung: Schema, `daten`-Block und Slot bereits konform (Header-Match verifiziert) — keine inhaltliche Änderung.
 
