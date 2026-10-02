@@ -3,7 +3,7 @@
   "app-entwickler-name": "ondics-gmbh",
   "name": "Bilder-Rätsel",
   "name-in-url": "bilder-raetsel",
-  "app-version": "1.2.4",
+  "app-version": "1.2.5",
   "app-package-version": "2",
   "kurzbeschreibung": "Spielerisches Bild-Duell mit touristischen Sehenswürdigkeiten: Foto erkennen und aus zwei Namen den richtigen wählen.",
   "beschreibung": [
@@ -58,6 +58,7 @@
   "odas-app-icon": "assets/odas-app-icon.svg",
   "app-icon": "assets/odas-app-icon.svg",
   "api-version": "1",
+  "odas-services": ["proxy"],
   "instanz-config": {
     "seitentitel": {
       "label": "Seitentitel",
