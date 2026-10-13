@@ -93,9 +93,12 @@ Die Feldzuordnung ist tolerant gegenüber gängigen ODTA-/schema.org-Varianten:
 
 ## Datenmodell
 
-`assets/schema.json` beschreibt die für das Spiel relevanten Felder der flachen
-ODTA-Tabelle als Frictionless Table Schema (u. a. `@id`, `name`, `bayernCloudType`,
-`image-contentUrl`, `image-license`). `@id` ist Pflichtfeld; die voreingestellte
+`assets/schema.json` dokumentiert Quellfelder der flachen ODTA-Tabelle als
+Frictionless Table Schema. Für das Spiel ausgewertet werden ID, Name, Kategorie
+und Bild-/Rechteangaben (u. a. `@id`, `name`, `bayernCloudType`, `image-contentUrl`,
+`image-license`). `@type`, `description`, `url` und die Geo-Felder werden nicht
+verarbeitet; ihre Schemabeschreibungen kennzeichnen das ausdrücklich. Das Schema
+ist kein Schema des normalisierten Spielobjekts. `@id` ist Pflichtfeld; die voreingestellte
 Portal-Ressource enthält in allen 175 Einträgen einen `@id`-Wert.
 
 ## Konfiguration

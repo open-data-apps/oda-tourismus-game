@@ -1,11 +1,12 @@
 {
   "$schema": "https://frictionlessdata.io/schemas/table-schema.json",
+  "description": "Quellfelder der flachen ODTA-Tabelle. Das Spiel verwendet nur ID, Name, Kategorie und Bild-/Rechteangaben. Weitere hier dokumentierte Quellfelder werden ausdrücklich nicht verarbeitet; dies ist kein Schema des normalisierten Spielobjekts.",
   "fields": [
     {
       "name": "@type",
       "title": "Typ",
       "type": "string",
-      "description": "schema.org-Typ des Eintrags (hier durchgehend TouristAttraction)."
+      "description": "schema.org-Typ des Quelleintrags; wird im Spiel nicht ausgewertet."
     },
     {
       "name": "@id",
@@ -29,7 +30,7 @@
       "name": "description",
       "title": "Beschreibung",
       "type": "string",
-      "description": "Beschreibungstext der Sehenswürdigkeit."
+      "description": "Beschreibungstext der Quelle; wird im Spiel nicht verarbeitet."
     },
     {
       "name": "bayernCloudType",
@@ -42,19 +43,19 @@
       "title": "Webseite",
       "type": "string",
       "format": "uri",
-      "description": "Weiterführende Webseite zur Sehenswürdigkeit."
+      "description": "Weiterführende Webseite der Quelle; wird im Spiel nicht verwendet."
     },
     {
       "name": "geo-latitude",
       "title": "Breitengrad",
       "type": "number",
-      "description": "Geografische Breite (WGS84) des Points of Interest."
+      "description": "Geografische Breite (WGS84) des Quelleintrags; wird im Spiel nicht verarbeitet."
     },
     {
       "name": "geo-longitude",
       "title": "Längengrad",
       "type": "number",
-      "description": "Geografische Länge (WGS84) des Points of Interest."
+      "description": "Geografische Länge (WGS84) des Quelleintrags; wird im Spiel nicht verarbeitet."
     },
     {
       "name": "image-contentUrl",

@@ -1,5 +1,8 @@
 # Changelog
 
+## 1.2.6 - 2026-10-08
+- DOC: F-154: Schema als Quellfeld-Dokumentation kennzeichnen; nicht verarbeitete Typ-/Beschreibungs-/Web-/Geo-Felder ausdrücklich benennen, README synchronisieren.
+
 ## 1.2.5 - 2026-10-02
 - ENH: Verwendete ODAS-Dienste in `odas-services` deklariert.
 
