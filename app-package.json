@@ -3,7 +3,7 @@
   "app-entwickler-name": "ondics-gmbh",
   "name": "Bilder-Rätsel",
   "name-in-url": "bilder-raetsel",
-  "app-version": "1.2.7",
+  "app-version": "1.2.8",
   "app-package-version": "2",
   "kurzbeschreibung": "Spielerisches Bild-Duell mit touristischen Sehenswürdigkeiten: Foto erkennen und aus zwei Namen den richtigen wählen.",
   "beschreibung": [
@@ -47,7 +47,11 @@
   ],
   "screenshots": [
     "assets/Desktop_Screenshot.png",
-    "assets/Mobile_Screenshot.png"
+    "assets/Desktop_Screenshot_2.png",
+    "assets/Desktop_Screenshot_3.png",
+    "assets/Mobile_Screenshot.png",
+    "assets/Mobile_Screenshot_2.png",
+    "assets/Mobile_Screenshot_3.png"
   ],
   "daten": {
     "beschreibung": "POI-Datensatz im schema.org/ODTA-Format (z. B. TouristAttraction) mit Name, Kategorie und Foto-URL je Eintrag, als CSV oder JSON. Die voreingestellte Portalressource enthält Lizenzangaben je Eintrag und Bild; diese können voneinander abweichen.",
