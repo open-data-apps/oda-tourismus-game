@@ -3,7 +3,7 @@
   "app-entwickler-name": "ondics-gmbh",
   "name": "Bilder-Rätsel",
   "name-in-url": "bilder-raetsel",
-  "app-version": "1.2.9",
+  "app-version": "1.2.10",
   "app-package-version": "2",
   "kurzbeschreibung": "Spielerisches Bild-Duell mit touristischen Sehenswürdigkeiten: Foto erkennen und aus zwei Namen den richtigen wählen.",
   "beschreibung": [
@@ -24,13 +24,13 @@
     "",
     "## Datenquelle",
     "",
-    "- **Open Data Portal:** [{{odp.name}}]({{odp.url}})",
-    "- **Datensatz:** [Touristische Points of Interests (POI) München]({{{appinstanz.urlDaten}}})",
-    "- **Ressource:** [Konfigurierte POI-Ressource]({{{appinstanz.apiurls.1}}})",
+    "- **Open Data Portal:** Portal der jeweiligen App-Instanz",
+    "- **Datensatz:** Touristische Points of Interests (POI) München",
+    "- **Ressource:** Konfigurierte POI-Ressource",
     "",
     "## Open Data App Store",
     "",
-    "Diese App ist für den [{{odas.betreiber.name}}]({{odas.betreiber.url}}) gemacht und wurde von [{{app.developer.name}}]({{app.developer.url}}) entwickelt."
+    "Diese App ist für den [Open Data App Store](https://open-data-app-store.de/) gemacht und wurde von Ondics GmbH entwickelt."
   ],
   "tags-funktion": [
     "Spiel",

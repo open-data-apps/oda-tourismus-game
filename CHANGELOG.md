@@ -1,5 +1,8 @@
 # Changelog
 
+## 1.2.10 - 2026-10-27
+- DOCS: Store-Katalogtext ohne Instanz-Platzhalter: Links mit Platzhalterziel erscheinen dort als Text, weil die Katalogseite keine Instanz kennt und Platzhalter nicht auflöst (Live-Befund 27.10.2026). „Über diese App“ in der App bleibt unverändert.
+
 ## 1.2.9 - 2026-10-15
 - FIX: Kopfzeile bei 360 px ohne Überlauf (Template): Logo- und Burger-Spalte passen sich der Breite an, das Menü-Symbol ragt nicht mehr über den rechten Rand. Keine Änderung an App-Code oder Konfiguration.
 
