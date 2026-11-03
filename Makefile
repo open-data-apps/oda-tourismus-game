@@ -62,7 +62,7 @@ config: ## show docker-compose config
 zip: ## App zur Auslieferung vorbereiten
 	rm -f ${current_dir}.zip
 	zip -r ${current_dir}.zip \
-	 	app assets app-package.json CHANGELOG.md
+	 	app assets app-package.json CHANGELOG.md LICENSE
 
 check-app: ## App prüfen mit Skript aus ODAS-Tools
 	echo "App prüfen"
